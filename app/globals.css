@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .renting-spaces-item {
+    position: relative;
+  }
+
+  .renting-spaces-item:before {
+    background: transparent
+      linear-gradient(180deg, transparent 0, var(--unnamed-color-000000) 100%) 0
+      0 no-repeat padding-box;
+    background: transparent linear-gradient(180deg, transparent, #000) 0 0
+      no-repeat padding-box;
+    border-radius: 28px;
+    content: '';
+    inset: 0;
+    opacity: 0.45;
+    position: absolute;
+  }
+}

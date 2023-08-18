@@ -3,7 +3,7 @@ export const Button = ({ children, type }) => {
     return <button className='hover:underline'>{children}</button>;
   }
   return (
-    <button className='bg-primary border border-primary hover:bg-white px-6 rounded-full'>
+    <button className='bg-primary border border-primary hover:bg-white px-6 py-3 rounded-full'>
       {children}
     </button>
   );

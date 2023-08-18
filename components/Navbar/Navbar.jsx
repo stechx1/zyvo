@@ -1,4 +1,4 @@
-import { Button } from "../Button";
+import { Button } from '../Button';
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
@@ -7,9 +7,11 @@ export const Navbar = () => {
       <div className='container mx-auto flex justify-between'>
         <img src='/logo.svg' alt='logo' className='w-40' />
 
-        <div className="flex gap-5">
-          <Button type="secondary">About Us</Button>
-          <Button>Sign Up</Button>
+        <div className='flex gap-5'>
+          <Button type='secondary'>About Us</Button>
+          <button className='bg-primary border border-primary hover:bg-white px-6  rounded-full'>
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
