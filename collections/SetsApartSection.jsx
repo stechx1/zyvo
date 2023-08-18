@@ -33,7 +33,7 @@ export const SetsApartSection = () => {
   },
 ]
   return (
-    <div className='container mx-auto flex flex-col justify-center items-center gap-8'>
+    <div data-aos="fade-up" className='container mx-auto flex flex-col justify-center items-center gap-8'>
       <h2 className='text-5xl max-w-[815px] font-[500] leading-[62px] text-center'>
         What Sets Us Apart?
       </h2>

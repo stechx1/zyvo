@@ -2,10 +2,10 @@
 import {
   DetailsSection,
   HeroSection,
+  ItsAll,
   SetsApartSection,
   ShortTermSection,
 } from '@/collections';
-import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -17,6 +17,7 @@ export default function Home() {
         <DetailsSection />
         <ShortTermSection />
         <SetsApartSection />
+        <ItsAll />
       </div>
     </>
   );
