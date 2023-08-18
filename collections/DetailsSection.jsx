@@ -4,7 +4,7 @@ export const DetailsSection = () => {
   return (
     <div
       data-aos='fade-up'
-      className='my-12 flex flex-col justify-center items-center container mx-auto gap-8'
+      className='flex flex-col justify-center items-center container mx-auto gap-8'
     >
       <h2 className='text-5xl max-w-[815px] font-[500] leading-[62px] text-center'>
         A new way of <span className='text-primary'>renting and booking</span>{' '}

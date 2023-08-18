@@ -1,2 +1,4 @@
 export * from './HeroSection';
-export * from "./DetailsSection"
+export * from './DetailsSection';
+export * from './ShortTermSection';
+export * from './SetsApartSection';
