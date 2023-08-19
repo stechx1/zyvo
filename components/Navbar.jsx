@@ -1,19 +1,47 @@
+'use client';
+import { useState } from 'react';
 import { Button } from './Button';
+import { Login } from './Modal/Login';
+import { Signup } from './Modal/Signup';
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
-  return (
-    <div className=' bg-white py-5 shadow-sm  '>
-      <div className='container mx-auto flex justify-between'>
-        <img src='/logo.svg' alt='logo' className='w-40' />
+  const [loginModal, setLoginModal] = useState(false);
+  const [SignupModal, setSignupModal] = useState(false);
+  const switchModal = () => {
+    if (loginModal) {
+      setLoginModal(false);
+      setSignupModal(true);
+    } else {
+      setLoginModal(true);
+      setSignupModal(false);
+    }
+  };
 
-        <div className='flex gap-5'>
-          <Button type='secondary'>About Us</Button>
-          <button className='bg-primary border border-primary hover:bg-white px-6  rounded-full'>
+  const closeModal = () => {
+    setSignupModal(false);
+    setLoginModal(false);
+  };
+  return (
+    <div className=" bg-white py-5 shadow-sm  ">
+      <div className="container mx-auto flex justify-between">
+        <img src="/logo.svg" alt="logo" className="w-40" />
+
+        <div className="flex gap-5">
+          <Button type="secondary">About Us</Button>
+          <button
+            onClick={() => {
+              setSignupModal(true);
+            }}
+            className="bg-primary border border-primary hover:bg-white px-6  rounded-full"
+          >
             Sign Up
           </button>
         </div>
       </div>
+      {SignupModal && <Signup switchModal={switchModal} closeModal={closeModal} />}
+
+      {loginModal && <Login switchModal={switchModal} closeModal={closeModal} />}
     </div>
   );
 };
