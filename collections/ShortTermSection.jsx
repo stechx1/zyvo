@@ -1,3 +1,5 @@
+import { poppins } from '@/utils/font';
+
 /* eslint-disable @next/next/no-img-element */
 export const ShortTermSection = () => {
   return (
@@ -5,7 +7,9 @@ export const ShortTermSection = () => {
       data-aos='fade-up'
       className='container mx-auto flex flex-col justify-center items-center gap-10'
     >
-      <h2 className='text-5xl max-w-[815px] font-[500] leading-[62px] text-center'>
+      <h2
+        className={`text-5xl max-w-[815px] font-[500] leading-[62px] text-center ${poppins.className}`}
+      >
         Find or offer spaces tailored to your{' '}
         <span className='text-primary'>short-term needs</span>.
       </h2>

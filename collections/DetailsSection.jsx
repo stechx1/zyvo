@@ -1,4 +1,5 @@
 import { Button } from "@/components";
+import { poppins } from "@/utils/font";
 
 export const DetailsSection = () => {
   return (
@@ -6,13 +7,13 @@ export const DetailsSection = () => {
       data-aos='fade-up'
       className='flex flex-col justify-center items-center container mx-auto gap-8'
     >
-      <h2 className='text-5xl max-w-[815px] font-[500] leading-[62px] text-center'>
+      <h2 className={`text-5xl max-w-[815px] font-[500] leading-[62px] text-center ${poppins.className}`}>
         A new way of <span className='text-primary'>renting and booking</span>{' '}
         spaces hour by hour
       </h2>
       <div className='flex gap-10'>
         <div className="bg-[url('/pic1.png')] bg-cover bg-center bg-no-repeat p-9 flex justify-end items-end min-h-[450px] rounded-3xl renting-spaces-item">
-          <h2 className='text-3xl text-white font-[500] z-10'>
+          <h2 className={`text-3xl text-white font-[500] z-10 ${poppins.className} `}>
             Are you a frequent traveler or an ambitious host seeking flexible
             earnings?
           </h2>

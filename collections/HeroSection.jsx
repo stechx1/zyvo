@@ -1,3 +1,5 @@
+import { poppins } from "@/utils/font";
+
 /* eslint-disable @next/next/no-img-element */
 export const HeroSection = () => {
   return (
@@ -5,7 +7,7 @@ export const HeroSection = () => {
         data-aos='fade-up'
         className='max-w-[736px] text-center space-y-6 py-60'
       >
-        <h1 className='text-7xl font-bold leading-[84px]'>
+        <h1 className={`text-7xl font-bold leading-[84px] ${poppins.className}`}>
           Unlock a World of Hourly Spaces
         </h1>
         <p className='text-2xl'>The leading platform for hourly rentals</p>
