@@ -37,12 +37,12 @@ export const HeroSection = () => {
         <img
           src='/tilt-img1.png'
           alt='tilt'
-          className='absolute md:hidden w-[95px] bottom-[105px] right-[22px] '
+          className='absolute lg:hidden w-[95px] bottom-[105px] right-[22px] '
         />
         <img
           src='/tilt-img2.png'
           alt='img2'
-          className='absolute md:hidden w-[100px] top-[28px] left-[32px]'
+          className='absolute lg:hidden w-[100px] top-[28px] left-[32px]'
         />
       </div>
     </div>
