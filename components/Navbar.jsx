@@ -10,7 +10,7 @@ import { UserOutlined } from '@ant-design/icons';
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
-  console.log(Boolean(auth.currentUser));
+  console.log((auth.currentUser));
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -69,7 +69,7 @@ export const Navbar = () => {
                   size={'large'}
                   style={{ verticalAlign: 'middle' }}
                 >
-                  {auth.currentUser.displayName.slice(0, 1)}
+                  {auth?.currentUser?.displayName?.slice(0, 1) || "N"}
                 </Avatar>
               </Popover>
             </>

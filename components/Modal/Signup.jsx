@@ -3,6 +3,7 @@
 'use client';
 
 import { Fragment, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
 import { message } from 'antd';
 
@@ -15,6 +16,7 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 export function Signup({ switchModal, closeModal, visible }) {
+  const router = useRouter();
   const [open, setOpen] = useState(true);
 
   const cancelButtonRef = useRef(null);
@@ -43,7 +45,7 @@ export function Signup({ switchModal, closeModal, visible }) {
         cred.password
       )
         .then((userCred) => {
-          setOpen(false);
+          handleClose();
           router.push('/home');
         })
         .catch((error) => {
@@ -56,7 +58,6 @@ export function Signup({ switchModal, closeModal, visible }) {
           } else if (error.code === 'auth/weak-password') {
             alert('Please Enter Valid Credentials');
           } else {
-            alert(error.code);
           }
         });
     } else {

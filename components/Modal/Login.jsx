@@ -45,7 +45,6 @@ export function Login({ switchModal }) {
             //   setIsLoading(false);
           } else {
             //   setIsLoading(false);
-            alert(error.code);
           }
         });
     } else {
