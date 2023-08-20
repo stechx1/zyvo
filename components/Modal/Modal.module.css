@@ -28,6 +28,7 @@
 @media(max-width:550px){
   .ModalContainer{
     height: 100%;
+    width: "300px"
     /* width: 90%; */
     padding: 12px 30px;
     /* width: 90%; */
