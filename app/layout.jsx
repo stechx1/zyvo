@@ -1,7 +1,10 @@
+'use client';
 import { Footer, Navbar } from '@/components';
 import './globals.css';
 import { Poppins, Roboto } from 'next/font/google';
 import { AOSInit } from '@/AOSInit';
+import { useState, useEffect } from 'react';
+import Loading from '@/components/Loading';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,19 +20,33 @@ const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
 });
 
-export const metadata = {
-  title: 'ZYVO | Hourly Spaces',
-  description: 'Unlock a world of hourly spaces',
-};
+// export const metadata = {
+//   title: 'ZYVO | Hourly Spaces',
+//   description: 'Unlock a world of hourly spaces',
+// };
 
 export default function RootLayout({ children }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+
   return (
     <html lang='en'>
       <AOSInit />
       <body className={`${roboto.className} ${poppins.className} `}>
-        <Navbar />
-        {children}
-        <Footer />
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            <Navbar />
+            {children}
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );

@@ -7,15 +7,15 @@ import {
   SetsApartSection,
   ShortTermSection,
 } from '@/collections';
-import { useState } from 'react';
-import { Login } from '@/components/Modal/Login';
+import { useState, useEffect } from 'react';
+import Loading from '@/components/Loading';
 import { Signup } from '@/components/Modal/Signup';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
-  const router = useRouter();
+
   const switchModal = () => {
     if (loginModal) {
       setLoginModal(false);
@@ -30,22 +30,24 @@ export default function Home() {
     setSignupModal(false);
     setLoginModal(false);
   };
+
+
   return (
-    <>
-      <div className='bg-[url("/banner-bg.png")] bg-cover bg-center flex flex-col justify-center items-center '>
-        <HeroSection />
-      </div>
-      <div className='space-y-28'>
-        <DetailsSection setSignupModal={setSignupModal} />
-        <ShortTermSection />
-        <SetsApartSection />
-        <ItsAll setSignupModal={setSignupModal} />
-      </div>
-      <Signup
-        visible={SignupModal}
-        switchModal={switchModal}
-        closeModal={closeModal}
-      />
-    </>
+        <>
+          <div className='bg-[url("/banner-bg.png")] bg-cover bg-center flex flex-col justify-center items-center '>
+            <HeroSection />
+          </div>
+          <div className='space-y-28'>
+            <DetailsSection setSignupModal={setSignupModal} />
+            <ShortTermSection />
+            <SetsApartSection />
+            <ItsAll setSignupModal={setSignupModal} />
+          </div>
+          <Signup
+            visible={SignupModal}
+            switchModal={switchModal}
+            closeModal={closeModal}
+          />
+        </>
   );
 }
