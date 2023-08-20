@@ -8,9 +8,9 @@ export const Footer = () => {
   const [email, setEmail] = useState('');
   return (
     <div className='bg-[#3b4b4c] pt-20 text-white rounded-2xl'>
-      <div className='container mx-auto flex flex-col'>
-        <div className='grid grid-cols-5'>
-          <div className='flex flex-col'>
+      <div className='container mx-auto flex flex-col justify-center '>
+        <div className='grid md:grid-cols-5 grid-cols-2 md:space-y-0 space-y-6'>
+          <div className='flex flex-col md:col-span-1 col-span-2 md:my-0 my-4'>
             <h2 className={`text-2xl ${poppins.className}`}>Join Newsletter</h2>
             <div className='relative'>
               <input
@@ -25,14 +25,14 @@ export const Footer = () => {
               <img
                 src='/icons/message.svg'
                 alt='message'
-                className='w-10 absolute top-[27px] right-[44px]'
+                className='w-10 absolute md:top-[27px] md:right-[44px] top-[28px] right-[180px]'
               />
             </div>
           </div>
 
-          <div className='flex flex-col gap-8'>
-            <h2 className={`text-2xl ${poppins.className}`}>Company</h2>
-            <div className='text-[#ffffff99] space-y-8 flex flex-col'>
+          <div className='flex flex-col md:gap-8 gap-3'>
+            <h2 className={`md:text-2xl text-lg ${poppins.className}`}>Company</h2>
+            <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
               <Link href='/'>Our Story</Link>
               <Link href='/'>FAQ</Link>
               <Link href='/'>Why Us</Link>
@@ -40,26 +40,26 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className='flex flex-col gap-8'>
-            <h2 className={`text-2xl ${poppins.className}`}>Account</h2>
-            <div className='text-[#ffffff99] space-y-8 flex flex-col'>
+          <div className='flex flex-col md:gap-8 gap-3'>
+            <h2 className={`md:text-2xl text-lg ${poppins.className}`}>Account</h2>
+            <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
               <Link href='/'>Register</Link>
               <Link href='/'>Login</Link>
               <Link href='/'>Gift Vouchers</Link>
             </div>
           </div>
 
-          <div className='flex flex-col gap-8'>
-            <h2 className={`text-2xl ${poppins.className}`}>Resources</h2>
-            <div className='text-[#ffffff99] space-y-8 flex flex-col'>
+          <div className='flex flex-col md:gap-8 gap-3'>
+            <h2 className={`md:text-2xl text-lg ${poppins.className}`}>Resources</h2>
+            <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
               <Link href='/'>Become a host</Link>
               <Link href='/'>Blog Articles</Link>
               <Link href='/'>Explore Now</Link>
             </div>
           </div>
 
-          <div className='flex flex-col gap-8'>
-            <h2 className={`text-2xl ${poppins.className}`}>Follow Us</h2>
+          <div className='flex flex-col md:gap-8 gap-3'>
+            <h2 className={`md:text-2xl text-lg ${poppins.className}`}>Follow Us</h2>
             <div className='flex gap-2'>
               <img
                 src='/icons/facebook-icon.svg'
@@ -94,7 +94,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className='flex justify-between items-center py-6'>
+        <div className='flex flex-col md:flex-row justify-between items-center py-6 md:space-y-0 space-y-6'>
           <p className='text-[#ffffff99]'>Zyvo © Copyright 2023</p>
           <img src="icons/white-logo.svg" alt="logo" />
           <div className="flex gap-2 text-[#ffffff99]">

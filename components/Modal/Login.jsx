@@ -58,7 +58,7 @@ export function Login({ switchModal }) {
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
-        alert('login success')
+        setOpen(false);
       })
       .catch((err) => {
         console.log(err);

@@ -5,6 +5,7 @@ import { Poppins, Roboto } from 'next/font/google';
 import { AOSInit } from '@/AOSInit';
 import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
+import StyledComponentsRegistry from '@/lib/AntRegistry';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -42,9 +43,11 @@ export default function RootLayout({ children }) {
           <Loading />
         ) : (
           <>
-            <Navbar />
-            {children}
-            <Footer />
+            <StyledComponentsRegistry>
+              <Navbar />
+              {children}
+              <Footer />
+            </StyledComponentsRegistry>
           </>
         )}
       </body>

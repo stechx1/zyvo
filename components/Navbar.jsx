@@ -4,12 +4,35 @@ import { Button } from './Button';
 import { Login } from './Modal/Login';
 import { Signup } from './Modal/Signup';
 import { useRouter } from 'next/navigation';
+import { auth } from '@/firebase';
+import { Avatar, Popover } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
+  console.log(Boolean(auth.currentUser));
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const handleSignout = () => {
+    auth
+      .signOut()
+      .then(() => {
+        setIsLoggedIn(false);
+        router.push('/');
+        
+      })
+      .catch((err) => {
+        console.log('Some error in signout');
+      });
+  };
   const router = useRouter();
+  const content = (
+    <div onClick={handleSignout} className='flex gap-2 cursor-pointer'>
+      <img src='/icons/logout.svg' alt='logout' />
+      <p>Logout</p>
+    </div>
+  );
   const switchModal = () => {
     if (loginModal) {
       setLoginModal(false);
@@ -34,28 +57,43 @@ export const Navbar = () => {
           onClick={() => router.push('/')}
         />
 
-        <div className='flex gap-5'>
+        <div className='flex gap-5 justify-center items-center'>
           <Button onClick={() => router.push('/about')} type='secondary'>
             About Us
           </Button>
-          <button
-            onClick={() => {
-              setSignupModal(true);
-            }}
-            className='bg-primary border border-primary hover:bg-white px-6  rounded-full'
-          >
-            Sign Up
-          </button>
+          {auth.currentUser ? (
+            <>
+              <Popover content={content} arrow={false} trigger={'click'}>
+                <Avatar
+                  className='cursor-pointer'
+                  size={'large'}
+                  style={{ verticalAlign: 'middle' }}
+                >
+                  {auth.currentUser.displayName.slice(0, 1)}
+                </Avatar>
+              </Popover>
+            </>
+          ) : (
+            <Button
+              onClick={() => {
+                setSignupModal(true);
+              }}
+            >
+              Sign Up
+            </Button>
+          )}
         </div>
       </div>
-      
-        <Signup visible={SignupModal} switchModal={switchModal} closeModal={closeModal} />
-      
+
+      <Signup
+        visible={SignupModal}
+        switchModal={switchModal}
+        closeModal={closeModal}
+      />
 
       {loginModal && (
-        <Login switchModal={switchModal} closeModal={closeModal}  />
+        <Login switchModal={switchModal} closeModal={closeModal} />
       )}
     </div>
   );
 };
-

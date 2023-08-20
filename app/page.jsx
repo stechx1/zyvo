@@ -37,7 +37,7 @@ export default function Home() {
           <div className='bg-[url("/banner-bg.png")] bg-cover bg-center flex flex-col justify-center items-center '>
             <HeroSection />
           </div>
-          <div className='space-y-28'>
+          <div className='md:space-y-28 space-y-12'>
             <DetailsSection setSignupModal={setSignupModal} />
             <ShortTermSection />
             <SetsApartSection />

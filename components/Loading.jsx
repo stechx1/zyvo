@@ -14,7 +14,7 @@ const Loading = () => {
 
   return (
     <div className='flex justify-center items-center h-screen '>
-      <Lottie options={defaultOptions} height={200} width={200} />
+      <Lottie options={defaultOptions} height={250} width={250} />
     </div>
   );
 };

@@ -8,7 +8,7 @@ export const ShortTermSection = () => {
       className='container mx-auto flex flex-col justify-center items-center gap-10'
     >
       <h2
-        className={`text-5xl max-w-[815px] font-[500] leading-[62px] text-center ${poppins.className}`}
+        className={`md:text-5xl text-[22px] max-w-[815px] font-[500] md:leading-[62px] text-center ${poppins.className}`}
       >
         Find or offer spaces tailored to your{' '}
         <span className='text-primary'>short-term needs</span>.

@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.16.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@lottiefiles/react-lottie-player": "^3.5.3",
+    "antd": "^5.8.4",
     "aos": "^3.0.0-beta.6",
     "autoprefixer": "10.4.15",
     "eslint": "8.47.0",

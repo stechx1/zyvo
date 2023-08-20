@@ -73,7 +73,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
-        alert('login success')
+        handleClose();
       })
       .catch((err) => {
         console.log(err);
@@ -85,7 +85,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
-        alert('login success')
+        alert('login successsd')
       })
       .catch((err) => {
         console.log(err);
