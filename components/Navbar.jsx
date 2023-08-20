@@ -48,13 +48,14 @@ export const Navbar = () => {
           </button>
         </div>
       </div>
-      {SignupModal && (
-        <Signup switchModal={switchModal} closeModal={closeModal} />
-      )}
+      
+        <Signup visible={SignupModal} switchModal={switchModal} closeModal={closeModal} />
+      
 
       {loginModal && (
-        <Login switchModal={switchModal} closeModal={closeModal} />
+        <Login switchModal={switchModal} closeModal={closeModal}  />
       )}
     </div>
   );
 };
+
