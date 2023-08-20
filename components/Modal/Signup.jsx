@@ -29,13 +29,6 @@ export function Signup({ switchModal, closeModal, visible }) {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const error = (content) => {
-    messageApi.open({
-      type: 'error',
-      content,
-    });
-  };
-
   const handleSignup = async (e) => {
     if (cred.email !== '' || cred.password !== '') {
       e.preventDefault();

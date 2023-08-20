@@ -18,9 +18,8 @@ export const Navbar = () => {
     auth
       .signOut()
       .then(() => {
-        setIsLoggedIn(false);
+        setIsLoggedIn(!isLoggedIn);
         router.push('/');
-        
       })
       .catch((err) => {
         console.log('Some error in signout');
