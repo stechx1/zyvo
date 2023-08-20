@@ -31,23 +31,22 @@ export default function Home() {
     setLoginModal(false);
   };
 
-
   return (
-        <>
-          <div className='bg-[url("/banner-bg.png")] bg-cover bg-center flex flex-col justify-center items-center '>
-            <HeroSection />
-          </div>
-          <div className='md:space-y-28 space-y-12'>
-            <DetailsSection setSignupModal={setSignupModal} />
-            <ShortTermSection />
-            <SetsApartSection />
-            <ItsAll setSignupModal={setSignupModal} />
-          </div>
-          <Signup
-            visible={SignupModal}
-            switchModal={switchModal}
-            closeModal={closeModal}
-          />
-        </>
+    <>
+      <div className='bg-[url("/banner-bg.png")] bg-cover bg-center flex flex-col justify-center items-center '>
+        <HeroSection />
+      </div>
+      <div className='md:space-y-28 space-y-12'>
+        <DetailsSection setSignupModal={setSignupModal} />
+        <ShortTermSection />
+        <SetsApartSection />
+        <ItsAll setSignupModal={setSignupModal} />
+      </div>
+      <Signup
+        visible={SignupModal}
+        switchModal={switchModal}
+        closeModal={closeModal}
+      />
+    </>
   );
 }
