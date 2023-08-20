@@ -39,7 +39,7 @@ export function Signup({ switchModal, closeModal, visible }) {
       )
         .then((userCred) => {
           handleClose();
-          router.push('/home');
+          router.push('/welcome');
         })
         .catch((error) => {
           if (error.code === 'auth/email-already-in-use') {
@@ -51,6 +51,7 @@ export function Signup({ switchModal, closeModal, visible }) {
           } else if (error.code === 'auth/weak-password') {
             alert('Please Enter Valid Credentials');
           } else {
+            alert(error);
           }
         });
     } else {
@@ -64,7 +65,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     await signInWithPopup(auth, facebookProvider)
       .then((result) => {
         setOpen(false);
-        router.push('/home');
+        router.push('/welcome');
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +77,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
         setOpen(false);
-        router.push('/home');
+        router.push('/welcome');
         handleClose();
       })
       .catch((err) => {
@@ -89,7 +90,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
-        router.push('/home');
+        router.push('/welcome');
         handleClose();
       })
       .catch((err) => {

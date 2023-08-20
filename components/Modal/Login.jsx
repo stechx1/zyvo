@@ -30,7 +30,7 @@ export function Login({ switchModal }) {
       )
         .then(() => {
           setOpen(false);
-          router.push("/home")
+          router.push("/welcome")
           // router.push('/');
         })
         .catch((error) => {
@@ -58,7 +58,7 @@ export function Login({ switchModal }) {
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
         setOpen(false);
-        router.push("/home")
+        router.push("/welcome")
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +71,7 @@ export function Login({ switchModal }) {
     await signInWithPopup(auth, facebookProvider)
       .then((result) => {
         setOpen(false);
-        router.push("/home")
+        router.push("/welcome")
       })
       .catch((err) => {
         console.log(err);
@@ -84,7 +84,7 @@ export function Login({ switchModal }) {
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
         setOpen(false);
-        router.push("/home")
+        router.push("/welcome")
       })
       .catch((err) => {
         console.log(err);

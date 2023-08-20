@@ -6,7 +6,6 @@ import { Signup } from './Modal/Signup';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/firebase';
 import { Avatar, Popover } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { Container } from '.';
 
 /* eslint-disable @next/next/no-img-element */
