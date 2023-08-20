@@ -1,48 +1,110 @@
+/* eslint-disable @next/next/no-img-element */
+'use client';
 import { poppins } from '@/utils/font';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export const Footer = () => {
+  const [email, setEmail] = useState('');
   return (
     <div className='bg-[#3b4b4c] pt-20 text-white rounded-2xl'>
-      <div className='container mx-auto'>
+      <div className='container mx-auto flex flex-col'>
         <div className='grid grid-cols-5'>
           <div className='flex flex-col'>
             <h2 className={`text-2xl ${poppins.className}`}>Join Newsletter</h2>
+            <div className='relative'>
+              <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                type='email'
+                placeholder='Email'
+                name='email'
+                id='email'
+                className='bg-transparent text-white border border-solid border-gray-400 shadow-none outline-none focus:text-white focus:border-white rounded-[100px] h-12 px-6 my-6'
+              />
+              <img
+                src='/icons/message.svg'
+                alt='message'
+                className='w-10 absolute top-[27px] right-[44px]'
+              />
+            </div>
           </div>
 
           <div className='flex flex-col gap-8'>
             <h2 className={`text-2xl ${poppins.className}`}>Company</h2>
             <div className='text-[#ffffff99] space-y-8 flex flex-col'>
-              <Link href="/">Our Story</Link>
-              <Link href="/">FAQ</Link>
-              <Link href="/">Why Us</Link>
-              <Link href="/">Contact Us</Link>
+              <Link href='/'>Our Story</Link>
+              <Link href='/'>FAQ</Link>
+              <Link href='/'>Why Us</Link>
+              <Link href='/'>Contact Us</Link>
             </div>
           </div>
 
           <div className='flex flex-col gap-8'>
             <h2 className={`text-2xl ${poppins.className}`}>Account</h2>
             <div className='text-[#ffffff99] space-y-8 flex flex-col'>
-              <Link href="/">Register</Link>
-              <Link href="/">Login</Link>
-              <Link href="/">Gift Vouchers</Link>
+              <Link href='/'>Register</Link>
+              <Link href='/'>Login</Link>
+              <Link href='/'>Gift Vouchers</Link>
             </div>
           </div>
 
           <div className='flex flex-col gap-8'>
             <h2 className={`text-2xl ${poppins.className}`}>Resources</h2>
             <div className='text-[#ffffff99] space-y-8 flex flex-col'>
-              <Link href="/">Become a host</Link>
-              <Link href="/">Blog Articles</Link>
-              <Link href="/">Explore Now</Link>
+              <Link href='/'>Become a host</Link>
+              <Link href='/'>Blog Articles</Link>
+              <Link href='/'>Explore Now</Link>
             </div>
           </div>
 
-          <div>
+          <div className='flex flex-col gap-8'>
             <h2 className={`text-2xl ${poppins.className}`}>Follow Us</h2>
-            <div className='flex gap-2'></div>
+            <div className='flex gap-2'>
+              <img
+                src='/icons/facebook-icon.svg'
+                className='w-10 cursor-pointer'
+                alt='fb'
+              />
+              <img
+                src='/icons/instagram-icon.svg'
+                className='w-10 cursor-pointer'
+                alt='instagram'
+              />
+              <img
+                src='/icons/twitter-icon.svg'
+                className='w-10 cursor-pointer'
+                alt='twitter'
+              />
+              <img
+                src='/icons/linkedin-icon.svg'
+                className='w-10 cursor-pointer'
+                alt='linkedin'
+              />
+            </div>
           </div>
         </div>
+
+        <div className='my-24 flex justify-center items-center'>
+          <div className='flex gap-4 '>
+            <img src='/icons/amex.png' alt='amex' />
+            <img src='/icons/apple-pay.png' alt='apple' />
+            <img src='/icons/mastercard.png' alt='mc' />
+            <img src='/icons/visa.png' alt='visa' />
+          </div>
+        </div>
+
+        <div className='flex justify-between items-center py-6'>
+          <p className='text-[#ffffff99]'>Zyvo © Copyright 2023</p>
+          <img src="icons/white-logo.svg" alt="logo" />
+          <div className="flex gap-2 text-[#ffffff99]">
+            <Link href="/">Privacy Policy</Link>
+            <p>|</p>
+            <Link href="/">Terms of Service</Link>
+          </div>
+        </div>
+
+
       </div>
     </div>
   );

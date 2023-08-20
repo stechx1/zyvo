@@ -1,7 +1,7 @@
 import { Button } from '@/components';
 
 /* eslint-disable @next/next/no-img-element */
-export const ItsAll = () => {
+export const ItsAll = ({setSignupModal}) => {
   return (
     <div
       data-aos='fade-up'
@@ -11,7 +11,7 @@ export const ItsAll = () => {
       <h2 className='text-5xl max-w-[815px] font-[500] leading-[62px] text-center'>
         It&apos;s all on ZYVO!
       </h2>
-      <Button>Join the club</Button>
+      <Button onClick={() => setSignupModal(true)}>Join the club</Button>
       <div className='mb-28'></div>
     </div>
   );

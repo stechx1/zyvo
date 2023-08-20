@@ -1,7 +1,7 @@
 import { Button } from "@/components";
 import { poppins } from "@/utils/font";
 
-export const DetailsSection = () => {
+export const DetailsSection = ({setSignupModal}) => {
   return (
     <div
       data-aos='fade-up'
@@ -26,7 +26,7 @@ export const DetailsSection = () => {
           </h2>
         </div>
       </div>
-      <Button>Create your ZYVO account</Button>
+      <Button onClick={() => setSignupModal(true)}>Create your ZYVO account</Button>
     </div>
   );
 };
