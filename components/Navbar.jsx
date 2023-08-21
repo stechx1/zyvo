@@ -29,9 +29,12 @@ export const Navbar = () => {
   };
   const router = useRouter();
   const content = (
-    <div onClick={handleSignout} className='flex gap-2 cursor-pointer'>
-      <img src='/icons/logout.svg' alt='logout' />
-      <p>Logout</p>
+    <div className='flex flex-col gap-2'>
+      <p>{auth?.currentUser?.displayName || 'New User'}</p>
+      <div onClick={handleSignout} className='flex gap-2 cursor-pointer'>
+        <img src='/icons/logout.svg' alt='logout' />
+        <p>Logout</p>
+      </div>
     </div>
   );
   const switchModal = () => {
@@ -69,6 +72,7 @@ export const Navbar = () => {
                   <Avatar
                     className='cursor-pointer'
                     size={'large'}
+                    src={auth?.currentUser?.photoURL}
                     style={{ verticalAlign: 'middle' }}
                   >
                     {auth?.currentUser?.displayName?.slice(0, 1) || 'N'}
@@ -94,10 +98,18 @@ export const Navbar = () => {
         closeModal={closeModal}
       /> */}
 
-      <RegisterModal switchModal={switchModal} closeModal={closeModal} signupModal={SignupModal}/>
+      <RegisterModal
+        switchModal={switchModal}
+        closeModal={closeModal}
+        signupModal={SignupModal}
+      />
 
       {loginModal && (
-        <LoginModal switchModal={switchModal} closeModal={closeModal} loginModal={loginModal}/>
+        <LoginModal
+          switchModal={switchModal}
+          closeModal={closeModal}
+          loginModal={loginModal}
+        />
         // <Login switchModal={switchModal} closeModal={closeModal} />
       )}
     </div>

@@ -1,21 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
-import { Modal } from 'antd';
-import { Button } from '@/components';
+
 import { Fragment, useRef, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { Modal } from 'antd';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components';
+
 import { auth } from '@/firebase';
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
   TwitterAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
 export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const [open, setOpen] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [cred, setCred] = useState({ email: '', password: '' });
+  const router = useRouter();
 
   const onchange = (e) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
@@ -23,6 +26,7 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
 
   const cancelButtonRef = useRef(null);
   const handleSignup = async (e) => {
+    setLoading(true);
     if (cred.email !== '' || cred.password !== '') {
       e.preventDefault();
       const Newuser = await createUserWithEmailAndPassword(
@@ -31,7 +35,9 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
         cred.password
       )
         .then((userCred) => {
-          handleClose();
+          setCred({ email: '', password: '' });
+          setLoading(false);
+          closeModal();
           router.push('/welcome');
         })
         .catch((error) => {
@@ -46,9 +52,11 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           } else {
             alert(error);
           }
+          setLoading(false)
         });
     } else {
       alert('Fill all the fields!');
+      setLoading(false)
     }
   };
 
@@ -57,7 +65,8 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -70,7 +79,8 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     const facebookProvider = new FacebookAuthProvider();
     await signInWithPopup(auth, facebookProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -83,7 +93,8 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -91,16 +102,13 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
       });
   };
   return (
-    <Modal
-      open={signupModal}
-      onCancel={closeModal}
-      footer={null}
-    >
+    <Modal open={signupModal} onCancel={closeModal} footer={null}>
       <div className='mt-3 flex flex-col gap-4 w-full sm:mt-0 sm:text-left'>
         <span className='text-black text-[30px] font-medium text-center'>
           Sign up or Log in
         </span>
         <input
+          value={cred.email}
           type='email'
           placeholder='Email'
           name='email'
@@ -109,6 +117,7 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
         />
         <input
+          value={cred.password}
           type='password'
           placeholder='Password'
           name='password'
@@ -116,12 +125,13 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           onChange={onchange}
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
         />
-        <button
+        <Button
+          disabled={loading}
           onClick={handleSignup}
           className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
         >
           Create Account
-        </button>
+        </Button>
         <hr />
 
         <div className='flex flex-col items-center gap-4 my-10'>

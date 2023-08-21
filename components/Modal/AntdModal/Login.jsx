@@ -13,9 +13,10 @@ import {
   signInWithEmailAndPassword,
   TwitterAuthProvider,
 } from 'firebase/auth';
-export const LoginModal = ({switchModal, closeModal, loginModal}) => {
+export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
   const [open, setOpen] = useState(true);
   const [cred, setCred] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
 
   const onchange = (e) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
@@ -23,6 +24,7 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
 
   const cancelButtonRef = useRef(null);
   const handleLogin = async (e) => {
+    setLoading(true);
     if (cred.email !== '' || cred.password !== '') {
       e.preventDefault();
       const Newuser = await signInWithEmailAndPassword(
@@ -31,9 +33,10 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
         cred.password
       )
         .then(() => {
-          setOpen(false);
+          setCred({ email: '', password: '' });
+          setLoading(false);
+          closeModal();
           router.push('/welcome');
-          // router.push('/');
         })
         .catch((error) => {
           if (error.code === 'auth/user-not-found') {
@@ -57,7 +60,8 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -70,7 +74,8 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
     const facebookProvider = new FacebookAuthProvider();
     await signInWithPopup(auth, facebookProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -83,7 +88,8 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
-        setOpen(false);
+        setLoading(false);
+        closeModal();
         router.push('/welcome');
       })
       .catch((err) => {
@@ -91,13 +97,8 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
       });
   };
   return (
-    <Modal
-      open={loginModal}
-      onCancel={closeModal}
-      footer={null}
-
-    >
-      <div className='mt-3 flex flex-col gap-4 w-full sm:mx-4 sm:mt-0 sm:text-left'>
+    <Modal open={loginModal} onCancel={closeModal} footer={null}>
+      <div className='mt-3 flex flex-col gap-4 w-full sm:mt-0 sm:text-left'>
         <span className='text-black text-[30px] font-medium text-center'>
           Sign up or Log in
         </span>
@@ -119,12 +120,9 @@ export const LoginModal = ({switchModal, closeModal, loginModal}) => {
           id='password'
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
         />
-        <button
-          onClick={handleLogin}
-          className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
-        >
+        <Button disabled={loading} onClick={handleLogin}>
           Login
-        </button>
+        </Button>
         <div className='flex text-[18px] justify-between my-5'>
           <div className='flex gap-2 items-center'>
             <input
