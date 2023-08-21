@@ -25,11 +25,6 @@ const AboutPage = () => {
     }
   };
 
-  useEffect(() => {
-    // code here
-    setIsLoggedIn(!isLoggedIn);
-  }, [isLoggedIn, setIsLoggedIn]);
-
   const closeModal = () => {
     setSignupModal(false);
     setLoginModal(false);

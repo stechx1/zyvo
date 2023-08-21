@@ -5,6 +5,7 @@ import { Button } from '@/components';
 import { Fragment, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { auth } from '@/firebase';
+import "./index.css";
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
