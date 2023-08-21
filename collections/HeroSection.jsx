@@ -8,7 +8,7 @@ export const HeroSection = () => {
       className='max-w-[736px] mx-auto text-center space-y-6 py-60 relative'
     >
       <h1
-        className={`md:text-7xl text-4xl md:font-bold font-[600] md:leading-[84px] ${poppins.className}`}
+        className={`md:text-7xl text-4xl font-[600] md:leading-[84px] ${poppins.className}`}
       >
         Unlock a World of Hourly Spaces
       </h1>
