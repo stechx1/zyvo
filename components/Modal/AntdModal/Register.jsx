@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useRef, useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components';
@@ -17,8 +17,13 @@ import {
 export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [cred, setCred] = useState({ email: '', password: '' });
+  const [cred, setCred] = useState({ email: '', password: '', fname: '', lname:'' });
   const router = useRouter();
+  const [emailEntered, setEmailEntered] = useState(false)
+
+  useEffect(()=>{
+    setEmailEntered(false)
+  }, [signupModal])
 
   const onchange = (e) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
@@ -27,15 +32,17 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const cancelButtonRef = useRef(null);
   const handleSignup = async (e) => {
     setLoading(true);
-    if (cred.email !== '' || cred.password !== '') {
+    if (cred.email !== '' || cred.password !== '' || cred.name !== '') {
       e.preventDefault();
+      const fullname = cred.fname + ' ' + cred.lname
       const Newuser = await createUserWithEmailAndPassword(
         auth,
         cred.email,
         cred.password
       )
         .then((userCred) => {
-          setCred({ email: '', password: '' });
+          setCred({ email: '', password: '', fname:'', lname:'' });
+          userCred.user.displayName = fullname
           setLoading(false);
           closeModal();
           router.push('/welcome');
@@ -52,11 +59,11 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           } else {
             alert(error);
           }
-          setLoading(false)
+          setLoading(false);
         });
     } else {
       alert('Fill all the fields!');
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -116,6 +123,27 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           onChange={onchange}
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
         />
+        {emailEntered && <><div className='flex sm:flex-row flex-col gap-4'>
+          <input
+            value={cred.fname}
+            type='text'
+            placeholder='First Name'
+            name='fname'
+            id='fname'
+            onChange={onchange}
+            className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
+          />
+
+          <input
+            value={cred.lname}
+            type='text'
+            placeholder='Last Name'
+            name='lname'
+            id='lname'
+            onChange={onchange}
+            className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
+          />
+        </div>
         <input
           value={cred.password}
           type='password'
@@ -124,14 +152,26 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           id='password'
           onChange={onchange}
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
-        />
-        <Button
+        /></>}
+        {emailEntered ? <Button
           disabled={loading}
           onClick={handleSignup}
           className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
         >
           Create Account
-        </Button>
+        </Button> : <Button
+          disabled={loading}
+          onClick={()=>{
+            if(cred.email !== ""){
+              setEmailEntered(true)
+            }else{
+              alert("Please enter your email")
+            }
+          }}
+          className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
+        >
+          Next
+        </Button>}
         <hr />
 
         <div className='flex flex-col items-center gap-4 my-10'>

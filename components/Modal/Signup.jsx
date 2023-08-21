@@ -90,6 +90,7 @@ export function Signup({ switchModal, closeModal, visible }) {
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
       .then((result) => {
+        
         router.push('/welcome');
         handleClose();
       })
