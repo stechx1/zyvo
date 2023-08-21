@@ -5,6 +5,8 @@ import { Poppins, Roboto } from 'next/font/google';
 import { AOSInit } from '@/AOSInit';
 import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
+import { ToasterProvider } from '@/providers/toast-provider';
+
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 
 const poppins = Poppins({
@@ -44,6 +46,7 @@ export default function RootLayout({ children }) {
         ) : (
           <>
             <StyledComponentsRegistry>
+            <ToasterProvider />
               <Navbar />
               {children}
               <Footer />

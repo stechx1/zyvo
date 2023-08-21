@@ -1,8 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { Button } from './Button';
-import { Login } from './Modal/Login';
-import { Signup } from './Modal/Signup';
 import { useRouter } from 'next/navigation';
 import { auth } from '@/firebase';
 import { Avatar, Popover } from 'antd';

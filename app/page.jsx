@@ -9,8 +9,8 @@ import {
 } from '@/collections';
 import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
-import { Signup } from '@/components/Modal/Signup';
 import { useRouter } from 'next/navigation';
+import { RegisterModal } from '@/components/Modal/AntdModal/Register';
 
 export default function Home() {
   const [loginModal, setLoginModal] = useState(false);
@@ -42,8 +42,8 @@ export default function Home() {
         <SetsApartSection />
         <ItsAll setSignupModal={setSignupModal} />
       </div>
-      <Signup
-        visible={SignupModal}
+      <RegisterModal
+        signupModal={SignupModal}
         switchModal={switchModal}
         closeModal={closeModal}
       />

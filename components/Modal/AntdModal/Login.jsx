@@ -3,8 +3,7 @@
 import { Modal } from 'antd';
 import { Button } from '@/components';
 import { Fragment, useRef, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { toast } from 'react-hot-toast';
 import { auth } from '@/firebase';
 import {
   GoogleAuthProvider,
@@ -40,18 +39,19 @@ export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
         })
         .catch((error) => {
           if (error.code === 'auth/user-not-found') {
-            alert('Please Enter Valid Information');
+            toast.error("Please Enter Valid Information")
           } else if (error.code === 'auth/invalid-email') {
-            alert('That email address is invalid!');
+            toast.error("That email address is invalid!")
           } else if (error.code === 'auth/wrong-password') {
-            alert('Please Enter Valid Credentials');
+            toast.error("Please Enter Valid Credentials")
+
             //   setIsLoading(false);
           } else {
             //   setIsLoading(false);
           }
         });
     } else {
-      alert('Fill all the fields!');
+      toast.error("Fill all the fields!")
     }
   };
 

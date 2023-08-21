@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable @next/next/no-img-element */
-"use client";
+'use client';
 import { useState } from 'react';
-import { Signup } from '@/components/Modal/Signup';
 import { useRouter } from 'next/navigation';
 import { AboutBox } from '@/components/AboutBox';
 import { AboutSection } from '@/collections/AboutSection';
 import { Button } from '@/components';
+import { RegisterModal } from '@/components/Modal/AntdModal/Register';
 
 const AboutPage = () => {
   const [loginModal, setLoginModal] = useState(false);
@@ -87,8 +87,8 @@ const AboutPage = () => {
           Create your ZYVO account
         </Button>
       </div>
-      <Signup
-        visible={SignupModal}
+      <RegisterModal
+        signupModal={SignupModal}
         switchModal={switchModal}
         closeModal={closeModal}
       />

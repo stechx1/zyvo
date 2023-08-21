@@ -4,6 +4,8 @@
 import { Fragment, useRef, useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
+
 import { Button } from '@/components';
 
 import { auth } from '@/firebase';
@@ -17,13 +19,18 @@ import {
 export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const [open, setOpen] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [cred, setCred] = useState({ email: '', password: '', fname: '', lname:'' });
+  const [cred, setCred] = useState({
+    email: '',
+    password: '',
+    fname: '',
+    lname: '',
+  });
   const router = useRouter();
-  const [emailEntered, setEmailEntered] = useState(false)
+  const [emailEntered, setEmailEntered] = useState(false);
 
-  useEffect(()=>{
-    setEmailEntered(false)
-  }, [signupModal])
+  useEffect(() => {
+    setEmailEntered(false);
+  }, [signupModal]);
 
   const onchange = (e) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
@@ -34,28 +41,28 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     setLoading(true);
     if (cred.email !== '' || cred.password !== '' || cred.name !== '') {
       e.preventDefault();
-      const fullname = cred.fname + ' ' + cred.lname
+      const fullname = cred.fname + ' ' + cred.lname;
       const Newuser = await createUserWithEmailAndPassword(
         auth,
         cred.email,
         cred.password
       )
         .then((userCred) => {
-          setCred({ email: '', password: '', fname:'', lname:'' });
-          userCred.user.displayName = fullname
+          setCred({ email: '', password: '', fname: '', lname: '' });
+          userCred.user.displayName = fullname;
           setLoading(false);
           closeModal();
           router.push('/welcome');
         })
         .catch((error) => {
           if (error.code === 'auth/email-already-in-use') {
-            alert('That email address is already in use!');
+            toast.error('That email address is already in use!');
           } else if (error.code === 'auth/invalid-email') {
-            alert('That email address is invalid!');
+            toast.error('That email address is invalid!');
           } else if (error.code === 'auth/wrong-password') {
-            alert('Please Enter Valid Credentials');
+            toast.error('Please Enter Valid Credentials');
           } else if (error.code === 'auth/weak-password') {
-            alert('Please Enter Valid Credentials');
+            toast.error('Please Enter Valid Credentials');
           } else {
             alert(error);
           }
@@ -123,55 +130,63 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
           onChange={onchange}
           className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
         />
-        {emailEntered && <><div className='flex sm:flex-row flex-col gap-4'>
-          <input
-            value={cred.fname}
-            type='text'
-            placeholder='First Name'
-            name='fname'
-            id='fname'
-            onChange={onchange}
-            className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
-          />
+        {emailEntered && (
+          <>
+            <div className='flex sm:flex-row flex-col gap-4'>
+              <input
+                value={cred.fname}
+                type='text'
+                placeholder='First Name'
+                name='fname'
+                id='fname'
+                onChange={onchange}
+                className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
+              />
 
-          <input
-            value={cred.lname}
-            type='text'
-            placeholder='Last Name'
-            name='lname'
-            id='lname'
-            onChange={onchange}
-            className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
-          />
-        </div>
-        <input
-          value={cred.password}
-          type='password'
-          placeholder='Password'
-          name='password'
-          id='password'
-          onChange={onchange}
-          className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
-        /></>}
-        {emailEntered ? <Button
-          disabled={loading}
-          onClick={handleSignup}
-          className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
-        >
-          Create Account
-        </Button> : <Button
-          disabled={loading}
-          onClick={()=>{
-            if(cred.email !== ""){
-              setEmailEntered(true)
-            }else{
-              alert("Please enter your email")
-            }
-          }}
-          className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
-        >
-          Next
-        </Button>}
+              <input
+                value={cred.lname}
+                type='text'
+                placeholder='Last Name'
+                name='lname'
+                id='lname'
+                onChange={onchange}
+                className='border w-full border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
+              />
+            </div>
+            <input
+              value={cred.password}
+              type='password'
+              placeholder='Password'
+              name='password'
+              id='password'
+              onChange={onchange}
+              className='border border-solid border-gray-400 text-[18px] !important shadow-none outline-none rounded-[100px] h-[55px] px-6'
+            />
+          </>
+        )}
+        {emailEntered ? (
+          <Button
+            disabled={loading}
+            onClick={handleSignup}
+            className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
+          >
+            Create Account
+          </Button>
+        ) : (
+          <Button
+            disabled={loading}
+            onClick={() => {
+              if (cred.email !== '') {
+                setEmailEntered(true);
+              } else {
+                alert('Please enter your email');
+              }
+            }}
+            className='bg-primary border text-[18px] border-primary hover:bg-white px-6 py-3  rounded-full'
+          >
+            Next
+          </Button>
+        )}
         <hr />
 
         <div className='flex flex-col items-center gap-4 my-10'>
