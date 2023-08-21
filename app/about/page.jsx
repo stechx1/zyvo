@@ -86,7 +86,7 @@ const AboutPage = () => {
           MOMENT IS YOURS
         </span>
 
-        {!auth.currentUser && (
+        {!auth?.currentUser && (
           <Button onClick={() => setSignupModal(true)}>
             Create your ZYVO account
           </Button>
