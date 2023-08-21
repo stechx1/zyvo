@@ -1,11 +1,22 @@
-/* .ant-modal,
-.ant-modal-content {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  top: 0;
+@media (max-width: 767px) {
+  .ant-modal,
+  .ant-modal-content {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    top: 0;
+  }
+
+  .ant-modal-body {
+    height: calc(100vh - 100px);
+  }
 }
 
-.ant-modal-body {
-  height: calc(100vh - 100px);
-} */
+.ant-modal-root .ant-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.78);
+  pointer-events: none;
+}
