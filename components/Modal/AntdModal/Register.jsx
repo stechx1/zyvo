@@ -15,6 +15,7 @@ import {
   TwitterAuthProvider,
   signInWithPopup,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from 'firebase/auth';
 export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const [open, setOpen] = useState(true);
@@ -48,11 +49,16 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
         cred.password
       )
         .then((userCred) => {
+          toast.success('Successfully signed up');
           setCred({ email: '', password: '', fname: '', lname: '' });
           userCred.user.displayName = fullname;
+          updateProfile(auth.currentUser, {
+            displayName: fullname,
+          });
+
           setLoading(false);
-          closeModal();
           router.push('/welcome');
+          closeModal();
         })
         .catch((error) => {
           if (error.code === 'auth/email-already-in-use') {

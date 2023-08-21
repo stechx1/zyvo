@@ -7,14 +7,16 @@ import {
   SetsApartSection,
   ShortTermSection,
 } from '@/collections';
+
 import { useState, useEffect } from 'react';
-import Loading from '@/components/Loading';
-import { useRouter } from 'next/navigation';
+import { auth } from '@/firebase';
+
 import { RegisterModal } from '@/components/Modal/AntdModal/Register';
 
 export default function Home() {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const switchModal = () => {
     if (loginModal) {
@@ -37,10 +39,12 @@ export default function Home() {
         <HeroSection />
       </div>
       <div className='md:space-y-28 space-y-12'>
-        <DetailsSection setSignupModal={setSignupModal} />
+        <DetailsSection
+          setSignupModal={setSignupModal}
+        />
         <ShortTermSection />
         <SetsApartSection />
-        <ItsAll setSignupModal={setSignupModal} />
+        {!auth?.currentUser && <ItsAll setSignupModal={setSignupModal} />}
       </div>
       <RegisterModal
         signupModal={SignupModal}

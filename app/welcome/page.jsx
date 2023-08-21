@@ -36,7 +36,7 @@ const Home = () => {
       </Modal>
 
       <div className='container mx-auto flex flex-col my-16  justify-center items-center'>
-        <p className='text-lg font-bold'>Its Official</p>
+        <p className='text-lg font-bold'>Its Official!</p>
         <h2 className={`text-center font-bold text-4xl my-4 ${poppins.className}`}>
           You&apos;re now part of the{' '}
           <span className='text-primary'>Zyvo Universe</span>

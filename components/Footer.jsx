@@ -5,14 +5,33 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Container } from '.';
 
+import { LoginModal } from './Modal/AntdModal/Login';
+import { RegisterModal } from './Modal/AntdModal/Register';
+
 export const Footer = () => {
-  const [email, setEmail] = useState('');
+  const [loginModal, setLoginModal] = useState(false);
+  const [SignupModal, setSignupModal] = useState(false);
+  const switchModal = () => {
+    if (loginModal) {
+      setLoginModal(false);
+      setSignupModal(true);
+    } else {
+      setLoginModal(true);
+      setSignupModal(false);
+    }
+  };
+
+  const closeModal = () => {
+    setSignupModal(false);
+    setLoginModal(false);
+  };
   return (
-    <Container>
-      <div className='bg-[#3b4b4c] md:pt-20 p-8 my-2 text-white rounded-2xl'>
-        <div className='container mx-auto flex flex-col justify-center '>
-          <div className='flex justify-between  md:space-y-0 space-y-6'>
-            {/* <div className='flex flex-col md:col-span-1 col-span-2 md:my-0 my-4'>
+    <>
+      <Container>
+        <div className='bg-[#3b4b4c] md:pt-20 p-8 my-2 text-white rounded-2xl'>
+          <div className='container mx-auto flex flex-col justify-center '>
+            <div className='flex justify-between  md:space-y-0 space-y-6'>
+              {/* <div className='flex flex-col md:col-span-1 col-span-2 md:my-0 my-4'>
               <h2 className={`text-2xl ${poppins.className}`}>
                 Join Newsletter
               </h2>
@@ -35,7 +54,7 @@ export const Footer = () => {
               </div>
             </div> */}
 
-            {/* <div className='flex flex-col md:gap-8 gap-3'>
+              {/* <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
                 Company
               </h2>
@@ -47,18 +66,28 @@ export const Footer = () => {
               </div>
             </div> */}
 
-            <div className='flex flex-col md:gap-8 gap-3'>
-              <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
-                Account
-              </h2>
-              <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
-                <Link href='/'>Register</Link>
-                <Link href='/'>Login</Link>
-                {/* <Link href='/'>Gift Vouchers</Link> */}
+              <div className='flex flex-col md:gap-8 gap-3'>
+                <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
+                  Account
+                </h2>
+                <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
+                  <p
+                    className='cursor-pointer'
+                    onClick={() => setSignupModal(true)}
+                  >
+                    Register
+                  </p>
+                  <p
+                    className='cursor-pointer'
+                    onClick={() => setLoginModal(true)}
+                  >
+                    Login
+                  </p>
+                  {/* <Link href='/'>Gift Vouchers</Link> */}
+                </div>
               </div>
-            </div>
 
-            {/* <div className='flex flex-col md:gap-8 gap-3'>
+              {/* <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
                 Resources
               </h2>
@@ -69,55 +98,86 @@ export const Footer = () => {
               </div>
             </div> */}
 
-            <div className='flex flex-col md:gap-8 gap-3'>
-              <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
-                Follow Us
-              </h2>
-              <div className='flex gap-2'>
+              <div className='flex flex-col md:gap-8 gap-3'>
+                <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
+                  Follow Us
+                </h2>
+                <div className='flex gap-2'>
+                  <img
+                    src='/icons/facebook-icon.svg'
+                    className='md:w-10 w-8 cursor-pointer'
+                    alt='fb'
+                  />
+                  <img
+                    src='/icons/instagram-icon.svg'
+                    className='md:w-10 w-8 cursor-pointer'
+                    alt='instagram'
+                  />
+                  <img
+                    src='/icons/twitter-icon.svg'
+                    className='md:w-10 w-8 cursor-pointer'
+                    alt='twitter'
+                  />
+                  <img
+                    src='/icons/linkedin-icon.svg'
+                    className='md:w-10 w-8 cursor-pointer'
+                    alt='linkedin'
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='my-12 flex justify-center items-center'>
+              <div className='flex gap-4 '>
                 <img
-                  src='/icons/facebook-icon.svg'
-                  className='md:w-10 w-8 cursor-pointer'
-                  alt='fb'
+                  className='w-10  md:w-full md:h-full'
+                  src='/icons/amex.png'
+                  alt='amex'
                 />
                 <img
-                  src='/icons/instagram-icon.svg'
-                  className='md:w-10 w-8 cursor-pointer'
-                  alt='instagram'
+                  className='w-10  md:w-full md:h-full'
+                  src='/icons/apple-pay.png'
+                  alt='apple'
                 />
                 <img
-                  src='/icons/twitter-icon.svg'
-                  className='md:w-10 w-8 cursor-pointer'
-                  alt='twitter'
+                  className='w-10  md:w-full md:h-full'
+                  src='/icons/mastercard.png'
+                  alt='mc'
                 />
                 <img
-                  src='/icons/linkedin-icon.svg'
-                  className='md:w-10 w-8 cursor-pointer'
-                  alt='linkedin'
+                  className='w-10  md:w-full md:h-full'
+                  src='/icons/visa.png'
+                  alt='visa'
                 />
               </div>
             </div>
-          </div>
 
-          <div className='my-12 flex justify-center items-center'>
-            <div className='flex gap-4 '>
-              <img className='w-10  md:w-full md:h-full' src='/icons/amex.png' alt='amex' />
-              <img className='w-10  md:w-full md:h-full' src='/icons/apple-pay.png' alt='apple' />
-              <img className='w-10  md:w-full md:h-full' src='/icons/mastercard.png' alt='mc' />
-              <img className='w-10  md:w-full md:h-full' src='/icons/visa.png' alt='visa' />
-            </div>
-          </div>
-
-          <div className='flex flex-col md:flex-row justify-between items-center py-2 md:space-y-0 space-y-6'>
-            <p className='text-[#ffffff99]'>Zyvo © Copyright 2023</p>
-            <img src='icons/white-logo.svg' alt='logo' />
-            <div className='flex gap-2 text-[#ffffff99]'>
-              <Link href='/'>Privacy Policy</Link>
-              <p>|</p>
-              <Link href='/'>Terms of Service</Link>
+            <div className='flex flex-col md:flex-row justify-between items-center py-2 md:space-y-0 space-y-6'>
+              <p className='text-[#ffffff99]'>Zyvo © Copyright 2023</p>
+              <img src='icons/white-logo.svg' alt='logo' />
+              <div className='flex gap-2 text-[#ffffff99]'>
+                <Link href='/'>Privacy Policy</Link>
+                <p>|</p>
+                <Link href='/'>Terms of Service</Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+      <RegisterModal
+        switchModal={switchModal}
+        closeModal={closeModal}
+        signupModal={SignupModal}
+      />
+
+      {loginModal && (
+        <LoginModal
+          switchModal={switchModal}
+          closeModal={closeModal}
+          loginModal={loginModal}
+        />
+        // <Login switchModal={switchModal} closeModal={closeModal} />
+      )}
+    </>
   );
 };

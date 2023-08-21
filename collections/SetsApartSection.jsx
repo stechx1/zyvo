@@ -15,22 +15,22 @@ export const SetsApartSection = () => {
       para: 'Pay only for the hours you book, saving you time and Money.',
     },
     {
-      id: 2,
+      id: 3,
       heading: 'Personalized Hospitality',
       para: 'Guests and hosts revel in customized stays, free from full-day reservations.',
     },
     {
-      id: 2,
+      id: 4,
       heading: 'Embrace Quick Getaways',
       para: 'Explore wonders of the local neighborhood, even with limited time.',
     },
     {
-      id: 2,
+      id: 5,
       heading: 'A Universe of Choices',
       para: 'Discover a plentiful selection of spaces, meeting every desire and need.',
     },
     {
-      id: 2,
+      id: 6,
       heading: 'No Long-Term Obligation',
       para: 'Stress-free solutions for temporary space without any long-term ties. ',
     },

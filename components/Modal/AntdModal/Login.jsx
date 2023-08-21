@@ -32,10 +32,10 @@ export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
         cred.password
       )
         .then(() => {
+          toast.success('Successfully signed in');
           setCred({ email: '', password: '' });
           setLoading(false);
           closeModal();
-          router.push('/welcome');
         })
         .catch((error) => {
           if (error.code === 'auth/user-not-found') {

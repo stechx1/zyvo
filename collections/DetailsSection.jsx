@@ -1,7 +1,12 @@
+'use client';
 import { Button, Container } from '@/components';
 import { poppins } from '@/utils/font';
+import { auth } from '@/firebase';
+import { useEffect, useState } from 'react';
 
-export const DetailsSection = ({ setSignupModal }) => {
+export const DetailsSection = ({
+  setSignupModal,
+}) => {
   return (
     <Container>
       <div
@@ -31,9 +36,11 @@ export const DetailsSection = ({ setSignupModal }) => {
             </h2>
           </div>
         </div>
-        <Button onClick={() => setSignupModal(true)}>
-          Create your ZYVO account
-        </Button>
+        {!auth.currentUser && (
+          <Button onClick={() => setSignupModal(true)}>
+            Create your ZYVO account
+          </Button>
+        )}
       </div>
     </Container>
   );

@@ -6,10 +6,13 @@ import { useRouter } from 'next/navigation';
 import { AboutBox } from '@/components/AboutBox';
 import { AboutSection } from '@/collections/AboutSection';
 import { Button } from '@/components';
+import { auth } from 'firebase/auth';
 import { RegisterModal } from '@/components/Modal/AntdModal/Register';
 
 const AboutPage = () => {
   const [loginModal, setLoginModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [SignupModal, setSignupModal] = useState(false);
   const router = useRouter();
   const switchModal = () => {
@@ -21,6 +24,11 @@ const AboutPage = () => {
       setSignupModal(false);
     }
   };
+
+  useEffect(() => {
+    // code here
+    setIsLoggedIn(!isLoggedIn);
+  }, [isLoggedIn, setIsLoggedIn]);
 
   const closeModal = () => {
     setSignupModal(false);
@@ -83,9 +91,11 @@ const AboutPage = () => {
           MOMENT IS YOURS
         </span>
 
-        <Button onClick={() => setSignupModal(true)}>
-          Create your ZYVO account
-        </Button>
+        {!auth.currentUser && (
+          <Button onClick={() => setSignupModal(true)}>
+            Create your ZYVO account
+          </Button>
+        )}
       </div>
       <RegisterModal
         signupModal={SignupModal}
