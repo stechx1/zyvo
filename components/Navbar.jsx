@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { auth } from '@/firebase';
 import { Avatar, Popover } from 'antd';
 import { Container } from '.';
+import { LoginModal } from './Modal/AntdModal/Login';
+import { RegisterModal } from './Modal/AntdModal/Register';
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
@@ -86,14 +88,17 @@ export const Navbar = () => {
         </div>
       </Container>
 
-      <Signup
+      {/* <Signup
         visible={SignupModal}
         switchModal={switchModal}
         closeModal={closeModal}
-      />
+      /> */}
+
+      <RegisterModal switchModal={switchModal} closeModal={closeModal} signupModal={SignupModal}/>
 
       {loginModal && (
-        <Login switchModal={switchModal} closeModal={closeModal} />
+        <LoginModal switchModal={switchModal} closeModal={closeModal} loginModal={loginModal}/>
+        // <Login switchModal={switchModal} closeModal={closeModal} />
       )}
     </div>
   );

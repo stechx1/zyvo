@@ -11,8 +11,8 @@ export const Footer = () => {
     <Container>
       <div className='bg-[#3b4b4c] md:pt-20 p-8 my-2 text-white rounded-2xl'>
         <div className='container mx-auto flex flex-col justify-center '>
-          <div className='grid md:grid-cols-5 grid-cols-2 md:space-y-0 space-y-6'>
-            <div className='flex flex-col md:col-span-1 col-span-2 md:my-0 my-4'>
+          <div className='flex justify-between  md:space-y-0 space-y-6'>
+            {/* <div className='flex flex-col md:col-span-1 col-span-2 md:my-0 my-4'>
               <h2 className={`text-2xl ${poppins.className}`}>
                 Join Newsletter
               </h2>
@@ -33,9 +33,9 @@ export const Footer = () => {
                     className='w-10'
                   />
               </div>
-            </div>
+            </div> */}
 
-            <div className='flex flex-col md:gap-8 gap-3'>
+            {/* <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
                 Company
               </h2>
@@ -45,7 +45,7 @@ export const Footer = () => {
                 <Link href='/'>Why Us</Link>
                 <Link href='/'>Contact Us</Link>
               </div>
-            </div>
+            </div> */}
 
             <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
@@ -54,11 +54,11 @@ export const Footer = () => {
               <div className='text-[#ffffff99] space-y-3 md:space-y-8 flex flex-col'>
                 <Link href='/'>Register</Link>
                 <Link href='/'>Login</Link>
-                <Link href='/'>Gift Vouchers</Link>
+                {/* <Link href='/'>Gift Vouchers</Link> */}
               </div>
             </div>
 
-            <div className='flex flex-col md:gap-8 gap-3'>
+            {/* <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
                 Resources
               </h2>
@@ -67,7 +67,7 @@ export const Footer = () => {
                 <Link href='/'>Blog Articles</Link>
                 <Link href='/'>Explore Now</Link>
               </div>
-            </div>
+            </div> */}
 
             <div className='flex flex-col md:gap-8 gap-3'>
               <h2 className={`md:text-2xl text-lg ${poppins.className}`}>
@@ -98,7 +98,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className='my-24 flex justify-center items-center'>
+          <div className='my-12 flex justify-center items-center'>
             <div className='flex gap-4 '>
               <img className='w-10  md:w-full md:h-full' src='/icons/amex.png' alt='amex' />
               <img className='w-10  md:w-full md:h-full' src='/icons/apple-pay.png' alt='apple' />
@@ -107,7 +107,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className='flex flex-col md:flex-row justify-between items-center py-6 md:space-y-0 space-y-6'>
+          <div className='flex flex-col md:flex-row justify-between items-center py-2 md:space-y-0 space-y-6'>
             <p className='text-[#ffffff99]'>Zyvo © Copyright 2023</p>
             <img src='icons/white-logo.svg' alt='logo' />
             <div className='flex gap-2 text-[#ffffff99]'>

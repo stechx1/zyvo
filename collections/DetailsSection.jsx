@@ -15,7 +15,7 @@ export const DetailsSection = ({ setSignupModal }) => {
           spaces hour by hour
         </h2>
         <div className='flex flex-col md:flex-row gap-10'>
-          <div className="bg-[url('/pic1.png')] bg-cover bg-center bg-no-repeat p-9 flex justify-end items-end md:min-h-[450px] min-h-[220px] md:rounded-3xl rounded-xl renting-spaces-item">
+          <div className="bg-[url('/pic1.png')] bg-cover bg-center bg-no-repeat p-9 flex justify-end items-end md:min-h-[450px] min-h-[220px] md:rounded-3xl rounded-3xl renting-spaces-item">
             <h2
               className={`md:text-3xl text-[20px] text-white font-[500] z-10 ${poppins.className} `}
             >

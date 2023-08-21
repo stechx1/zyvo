@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <div className=''>
       <Modal
-        title='Welcome to Zyvo universe'
+        title='Welcome to the Zyvo universe'
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
@@ -36,10 +36,10 @@ const Home = () => {
       </Modal>
 
       <div className='container mx-auto flex flex-col my-16  justify-center items-center'>
-        <p className='text-lg'>Its Official</p>
-        <h2 className={` font-bold text-4xl my-4 ${poppins.className}`}>
+        <p className='text-lg font-bold'>Its Official</p>
+        <h2 className={`text-center font-bold text-4xl my-4 ${poppins.className}`}>
           You&apos;re now part of the{' '}
-          <span className='text-primary'>ZYVO Universe</span>
+          <span className='text-primary'>Zyvo Universe</span>
         </h2>
         <div className='flex flex-col gap-6 justify-center items-center text-center w-[60%]'>
           <p>We&apos;re stoked to have you on board!</p>

@@ -8,7 +8,7 @@ export const HeroSection = () => {
       className='max-w-[736px] mx-auto text-center space-y-6 py-60 relative'
     >
       <h1
-        className={`md:text-7xl text-4xl font-bold md:leading-[84px] ${poppins.className}`}
+        className={`md:text-7xl text-4xl md:font-bold font-[600] md:leading-[84px] ${poppins.className}`}
       >
         Unlock a World of Hourly Spaces
       </h1>
@@ -37,12 +37,12 @@ export const HeroSection = () => {
         <img
           src='/tilt-img1.png'
           alt='tilt'
-          className='absolute lg:hidden w-[95px] bottom-[105px] right-[22px] '
+          className='absolute lg:hidden w-[110px] bottom-[105px] right-[22px] '
         />
         <img
           src='/tilt-img2.png'
           alt='img2'
-          className='absolute lg:hidden w-[100px] top-[28px] left-[32px]'
+          className='absolute lg:hidden w-[110px] top-[28px] left-[32px]'
         />
       </div>
     </div>

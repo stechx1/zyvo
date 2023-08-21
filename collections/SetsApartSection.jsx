@@ -47,20 +47,20 @@ export const SetsApartSection = () => {
           What Sets Us Apart?
         </h2>
         <div className="bg-[url('/pic4.png')] bg-cover bg-center bg-no-repeat px-7 flex justify-end items-end min-h-[650px] rounded-3xl renting-spaces-item w-full">
-          <div className='md:grid md:grid-cols-3'>
+          <div className='md:grid md:grid-cols-3 mt-20'>
             {setsApart.map((item) => (
               <div
                 className='flex gap-4 justify-center items-center z-30 py-8 border-t border-t-[#ffffff33] mr-5'
                 key={item.id}
               >
                 <img
-                  className='w-[75px] rounded-full'
+                  className='w-[65px] rounded-full'
                   src='/icons/check.png'
                   alt='check'
                 />
                 <div className='flex flex-col gap-1'>
                   <h5
-                    className={`text-xl text-white font-[500] ${poppins.className}`}
+                    className={`md:text-xl text-lg text-white font-[500] ${poppins.className}`}
                   >
                     {item.heading}
                   </h5>
