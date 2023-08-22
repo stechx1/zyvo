@@ -17,12 +17,12 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithRedirect,
 } from 'firebase/auth';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useUser, setUser } from '@/store/context';
 
-
-export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {  
+export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
   const { dispatch } = useUser();
   const [loading, setLoading] = useState(false);
   const [localUser, setLocalUser] = useLocalStorage('localUser', '');
@@ -55,7 +55,7 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
       )
         .then(async (userCred) => {
           toast.success('Successfully signed up');
-          setLocalUser(userCred.user)
+          setLocalUser(userCred.user);
           dispatch(setUser(userCred.user));
           userCred.user.displayName = fullname;
           updateProfile(auth.currentUser, {
@@ -92,10 +92,11 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
-      .then(async (result) => {
+    .then(async (result) => {
+        dispatch(setUser(userCred.user));
         const email = result.user.email;
         const response = await axios.post('/api/register', { email });
-        console.log(response)
+        console.log("response", response);
         setLoading(false);
         closeModal();
         router.push('/welcome');
@@ -109,7 +110,7 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const facebookProvider = new FacebookAuthProvider();
     await signInWithPopup(auth, facebookProvider)
-      .then(async (result) => {
+    .then(async (result) => {
         const email = result.user.email;
         const response = await axios.post('/api/register', { email });
         setLoading(false);

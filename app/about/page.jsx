@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { AboutBox } from '@/components/AboutBox';
 import { AboutSection } from '@/collections/AboutSection';
 import { Button } from '@/components';
@@ -11,11 +10,9 @@ import { RegisterModal } from '@/components/Modal/AntdModal/Register';
 
 const AboutPage = () => {
   const [loginModal, setLoginModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [SignupModal, setSignupModal] = useState(false);
-  const router = useRouter();
-  const switchModal = () => {
+    const switchModal = () => {
     if (loginModal) {
       setLoginModal(false);
       setSignupModal(true);
