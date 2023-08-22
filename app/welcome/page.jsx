@@ -60,7 +60,7 @@ const Home = () => {
             Explore now, unleash the fun, and make the most of your ZYVO
             journey.
           </p>
-          <p className='font-bold'>It&apos;s time to ZYVO-lve!</p>
+          <p className='font-bold'>It&apos;s time to <span className='text-primary'>ZYVO</span>LVE!</p>
         </div>
       </div>
     </div>

@@ -103,26 +103,42 @@ export const Footer = () => {
                   Follow Us
                 </h2>
                 <div className='flex gap-2'>
-                  <img
-                    src='/icons/facebook-icon.svg'
-                    className='md:w-10 w-8 cursor-pointer'
-                    alt='fb'
-                  />
-                  <img
-                    src='/icons/instagram-icon.svg'
-                    className='md:w-10 w-8 cursor-pointer'
-                    alt='instagram'
-                  />
-                  <img
-                    src='/icons/twitter-icon.svg'
-                    className='md:w-10 w-8 cursor-pointer'
-                    alt='twitter'
-                  />
-                  <img
+                  <Link
+                    href={
+                      'https://www.facebook.com/profile.php?id=100094649903542'
+                    }
+                    target='blank'
+                  >
+                    <img
+                      src='/icons/facebook-icon.svg'
+                      className='md:w-10 w-8 cursor-pointer'
+                      alt='fb'
+                    />
+                  </Link>
+
+                  <Link
+                    href={'https://www.instagram.com/zyvo.app'}
+                    target='_blank'
+                  >
+                    <img
+                      src='/icons/instagram-icon.svg'
+                      className='md:w-10 w-8 cursor-pointer'
+                      alt='instagram'
+                    />
+                  </Link>
+
+                  <Link href='https://twitter.com/zyvoapp' target='_blank'>
+                    <img
+                      src='/icons/twitter-icon.svg'
+                      className='md:w-10 w-8 cursor-pointer'
+                      alt='twitter'
+                    />
+                  </Link>
+                  {/* <img
                     src='/icons/linkedin-icon.svg'
                     className='md:w-10 w-8 cursor-pointer'
                     alt='linkedin'
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

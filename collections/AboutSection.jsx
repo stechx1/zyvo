@@ -5,7 +5,7 @@ export const AboutSection = () => {
   return (
       <div
         data-aos='fade-up'
-        className='max-w-[736px] text-center space-y-6 pt-60 pb-32'
+        className='max-w-[736px] text-center space-y-6 pt-64 pb-32'
       >
         <h1 className={`md:text-7xl text-[40px] font-bold md:leading-[84px] ${poppins.className}`}>
           Meet ZYVO
