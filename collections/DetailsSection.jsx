@@ -1,11 +1,9 @@
 'use client';
 import { Button, Container } from '@/components';
 import { poppins } from '@/utils/font';
-import { auth } from '@/firebase';
-import { useEffect, useState } from 'react';
 
 export const DetailsSection = ({
-  setSignupModal,
+  setSignupModal, isLoggedIn
 }) => {
   return (
     <Container>
@@ -36,7 +34,7 @@ export const DetailsSection = ({
             </h2>
           </div>
         </div>
-        {!auth.currentUser && (
+        {!isLoggedIn && (
           <Button onClick={() => setSignupModal(true)}>
             Create your ZYVO account
           </Button>

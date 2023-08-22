@@ -12,11 +12,18 @@ import { useState, useEffect } from 'react';
 import { auth } from '@/firebase';
 
 import { RegisterModal } from '@/components/Modal/AntdModal/Register';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useUser, setUser, logout } from '@/store/context';
 
 export default function Home() {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [localUser, setLocalUser] = useLocalStorage('localUser', '');
+  const { user, isLoggedIn, dispatch } = useUser();
+
+  useEffect(() => {
+    console.log('Use effect ran');
+  }, [isLoggedIn]);
 
   const switchModal = () => {
     if (loginModal) {
@@ -39,12 +46,10 @@ export default function Home() {
         <HeroSection />
       </div>
       <div className='md:space-y-28 space-y-12'>
-        <DetailsSection
-          setSignupModal={setSignupModal}
-        />
+        <DetailsSection isLoggedIn={isLoggedIn} setSignupModal={setSignupModal} />
         <ShortTermSection />
         <SetsApartSection />
-        {!auth?.currentUser && <ItsAll setSignupModal={setSignupModal} />}
+        {!isLoggedIn && <ItsAll setSignupModal={setSignupModal} />}
       </div>
       <RegisterModal
         signupModal={SignupModal}

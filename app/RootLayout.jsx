@@ -6,6 +6,7 @@ import { AOSInit } from '@/AOSInit';
 import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
 import { ToasterProvider } from '@/providers/toast-provider';
+import { UserProvider } from '@/store/context';
 
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 
@@ -46,10 +47,13 @@ export default function RootLayout({ children }) {
         ) : (
           <>
             <StyledComponentsRegistry>
+            <UserProvider>
+
             <ToasterProvider />
               <Navbar />
               {children}
               <Footer />
+              </UserProvider>
             </StyledComponentsRegistry>
           </>
         )}

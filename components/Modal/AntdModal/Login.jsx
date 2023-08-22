@@ -2,7 +2,7 @@
 'use client';
 import { Modal } from 'antd';
 import { Button } from '@/components';
-import { Fragment, useRef, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { auth } from '@/firebase';
 import "./index.css";
@@ -13,16 +13,20 @@ import {
   signInWithEmailAndPassword,
   TwitterAuthProvider,
 } from 'firebase/auth';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useUser, setUser } from '@/store/context';
+
 export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
-  const [open, setOpen] = useState(true);
+  const { dispatch } = useUser();
+
   const [cred, setCred] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [localUser, setLocalUser] = useLocalStorage('localUser', '');
 
   const onchange = (e) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const cancelButtonRef = useRef(null);
   const handleLogin = async (e) => {
     setLoading(true);
     if (cred.email !== '' || cred.password !== '') {
@@ -32,8 +36,10 @@ export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
         cred.email,
         cred.password
       )
-        .then(() => {
+        .then((result) => {
           toast.success('Successfully signed in');
+          setLocalUser(result.user)
+          dispatch(setUser(result.user));
           setCred({ email: '', password: '' });
           setLoading(false);
           closeModal();

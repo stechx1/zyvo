@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { Fragment, useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
@@ -17,9 +17,14 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
-export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
-  const [open, setOpen] = useState(true);
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useUser, setUser } from '@/store/context';
+
+
+export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {  
+  const { dispatch } = useUser();
   const [loading, setLoading] = useState(false);
+  const [localUser, setLocalUser] = useLocalStorage('localUser', '');
   const [cred, setCred] = useState({
     email: '',
     password: '',
@@ -51,6 +56,8 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
         .then((userCred) => {
           toast.success('Successfully signed up');
           setCred({ email: '', password: '', fname: '', lname: '' });
+          setLocalUser(userCred.user)
+          dispatch(setUser(userCred.user));
           userCred.user.displayName = fullname;
           updateProfile(auth.currentUser, {
             displayName: fullname,

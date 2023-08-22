@@ -7,18 +7,25 @@ import { Avatar, Popover } from 'antd';
 import { Container } from '.';
 import { LoginModal } from './Modal/AntdModal/Login';
 import { RegisterModal } from './Modal/AntdModal/Register';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useUser, setUser, logout } from '@/store/context';
+
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
   console.log(auth.currentUser);
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const { user, isLoggedIn, dispatch } = useUser();
+
+  // const [localUser, setLocalUser] = useLocalStorage('localUser', '');
   const handleSignout = () => {
     auth
       .signOut()
       .then(() => {
-        setIsLoggedIn(!isLoggedIn);
+        logout();
+        // setLocalUser(null)
+        dispatch(logout());
         router.push('/');
       })
       .catch((err) => {
