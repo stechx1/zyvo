@@ -139,7 +139,7 @@ export const LoginModal = ({ switchModal, closeModal, loginModal }) => {
             <span>Keep me logged</span>
           </div>
 
-          <span className=' cursor-pointer underline'>Forget Password?</span>
+          <span className=' cursor-pointer underline'>Forgot Password?</span>
         </div>
         <hr />
 
