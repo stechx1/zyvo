@@ -92,12 +92,10 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
-    .then(async (result) => {
+    .then(async (userCred) => {
         dispatch(setUser(userCred.user));
-        const email = result.user.email;
-        const response = await axios.post('/api/register', { email });
-        console.log("response", response);
         setLoading(false);
+        toast.success("Successfully signed in")
         closeModal();
         router.push('/welcome');
       })
