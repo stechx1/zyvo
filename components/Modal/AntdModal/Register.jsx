@@ -3,6 +3,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { Modal } from 'antd';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 
@@ -42,7 +43,6 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     setCred({ ...cred, [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  const cancelButtonRef = useRef(null);
   const handleSignup = async (e) => {
     setLoading(true);
     if (cred.email !== '' || cred.password !== '' || cred.name !== '') {
@@ -53,16 +53,17 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
         cred.email,
         cred.password
       )
-        .then((userCred) => {
+        .then(async (userCred) => {
           toast.success('Successfully signed up');
-          setCred({ email: '', password: '', fname: '', lname: '' });
           setLocalUser(userCred.user)
           dispatch(setUser(userCred.user));
           userCred.user.displayName = fullname;
           updateProfile(auth.currentUser, {
             displayName: fullname,
           });
-
+          const email = cred.email;
+          const response = await axios.post('/api/register', { email });
+          setCred({ email: '', password: '', fname: '', lname: '' });
           setLoading(false);
           router.push('/welcome');
           closeModal();
@@ -91,7 +92,10 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const googleProvider = new GoogleAuthProvider();
     await signInWithPopup(auth, googleProvider)
-      .then((result) => {
+      .then(async (result) => {
+        const email = result.user.email;
+        const response = await axios.post('/api/register', { email });
+        console.log(response)
         setLoading(false);
         closeModal();
         router.push('/welcome');
@@ -105,7 +109,9 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const facebookProvider = new FacebookAuthProvider();
     await signInWithPopup(auth, facebookProvider)
-      .then((result) => {
+      .then(async (result) => {
+        const email = result.user.email;
+        const response = await axios.post('/api/register', { email });
         setLoading(false);
         closeModal();
         router.push('/welcome');
@@ -119,7 +125,9 @@ export const RegisterModal = ({ switchModal, closeModal, signupModal }) => {
     e.preventDefault();
     const twitterProvider = new TwitterAuthProvider();
     await signInWithPopup(auth, twitterProvider)
-      .then((result) => {
+      .then(async (result) => {
+        const email = result.user.email;
+        const response = await axios.post('/api/register', { email });
         setLoading(false);
         closeModal();
         router.push('/welcome');
