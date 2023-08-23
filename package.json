@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.16.2",
+    "@clerk/nextjs": "^4.23.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "antd": "^5.8.4",

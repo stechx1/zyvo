@@ -7,9 +7,10 @@ import { Avatar, Popover } from 'antd';
 import { Container } from '.';
 import { LoginModal } from './Modal/AntdModal/Login';
 import { RegisterModal } from './Modal/AntdModal/Register';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import {
+  UserButton, useAuth
+} from '@clerk/nextjs';
 import { useUser, setUser, logout } from '@/store/context';
-
 
 /* eslint-disable @next/next/no-img-element */
 export const Navbar = () => {
@@ -17,6 +18,7 @@ export const Navbar = () => {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
   const { user, isLoggedIn, dispatch } = useUser();
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
 
   // const [localUser, setLocalUser] = useLocalStorage('localUser', '');
   const handleSignout = () => {
@@ -83,6 +85,7 @@ export const Navbar = () => {
                     {auth?.currentUser?.displayName?.slice(0, 1) || 'N'}
                   </Avatar>
                 </Popover>
+                <UserButton afterSignOutUrl='/' />
               </>
             ) : (
               <Button

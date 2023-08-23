@@ -8,6 +8,7 @@ import Loading from '@/components/Loading';
 import { ToasterProvider } from '@/providers/toast-provider';
 import { UserProvider } from '@/store/context';
 
+
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 
 const poppins = Poppins({
@@ -37,6 +38,8 @@ export default function RootLayout({ children }) {
       setLoading(false);
     }, 2000);
   }, []);
+
+  const routesWithoutFooter = ["/sign-in", "sign-up"]
 
   return (
     <html lang='en'>

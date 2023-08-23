@@ -4,7 +4,7 @@ import { Modal } from 'antd';
 import { Button } from '@/components';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { auth } from '@/firebase';
+import { useAuth } from "@clerk/nextjs";
 import './index.css';
 import {
   GoogleAuthProvider,
