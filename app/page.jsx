@@ -20,7 +20,7 @@ export default function Home() {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
   const [localUser, setLocalUser] = useLocalStorage('localUser', '');
-  // const { isLoaded, isSignedIn, user } = useUser();
+  const { isLoaded, isSignedIn, user } = useUser();
 
   const switchModal = () => {
     if (loginModal) {
@@ -43,10 +43,10 @@ export default function Home() {
         <HeroSection />
       </div>
       <div className='md:space-y-28 space-y-12'>
-        {/* <DetailsSection isLoggedIn={isSignedIn} setSignupModal={setSignupModal} /> */}
+        <DetailsSection isLoggedIn={isSignedIn} setSignupModal={setSignupModal} />
         <ShortTermSection />
         <SetsApartSection />
-        {/* {!isSignedIn && <ItsAll setSignupModal={setSignupModal} />} */}
+        {!isSignedIn && <ItsAll setSignupModal={setSignupModal} />}
       </div>
       <RegisterModal
         signupModal={SignupModal}

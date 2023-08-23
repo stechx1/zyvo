@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
             <StyledComponentsRegistry>
               <UserProvider>
                 <ToasterProvider />
-                <Navbar />
+                <NewNavbar />
                 {children}
                 <Footer />
               </UserProvider>
