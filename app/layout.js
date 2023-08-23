@@ -1,6 +1,5 @@
 import RootLayout from './RootLayout';
-import { ClerkProvider } from '@clerk/nextjs'
-
+import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata = {
   title: {
@@ -12,13 +11,11 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <ClerkProvider>
-
-    <html lang='en'>
-      <body>
-        <RootLayout>{children}</RootLayout>
-      </body>
-    </html>
+      <html lang='en'>
+        <body>
+          <RootLayout>{children}</RootLayout>
+        </body>
+      </html>
     </ClerkProvider>
-
   );
 }

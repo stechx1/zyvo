@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
 import { ToasterProvider } from '@/providers/toast-provider';
 import { UserProvider } from '@/store/context';
+import { ClerkProvider } from '@clerk/nextjs';
 
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 
@@ -38,12 +39,10 @@ export default function RootLayout({ children }) {
     }, 2000);
   }, []);
 
-  const routesWithoutFooter = ['/sign-in', 'sign-up'];
-
   return (
-    <html lang='en'>
+    <>
       <AOSInit />
-      <body className={`${roboto.className} ${poppins.className} `}>
+      {/* <body className={`${roboto.className} ${poppins.className} `}> */}
         {loading ? (
           <Loading />
         ) : (
@@ -58,7 +57,7 @@ export default function RootLayout({ children }) {
             </StyledComponentsRegistry>
           </>
         )}
-      </body>
-    </html>
+      {/* </body> */}
+    </>
   );
 }
