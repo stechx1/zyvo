@@ -14,9 +14,9 @@ export default function Layout({ children }) {
   return (
     <html lang='en'>
         <body>
-        <ClerkProvider>
+        {/* <ClerkProvider> */}
           <RootLayout>{children}</RootLayout>
-    </ClerkProvider>
+    {/* </ClerkProvider> */}
         </body>
       </html>
   );

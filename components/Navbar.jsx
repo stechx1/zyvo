@@ -18,7 +18,7 @@ export const Navbar = () => {
   const [loginModal, setLoginModal] = useState(false);
   const [SignupModal, setSignupModal] = useState(false);
   const { user, isLoggedIn, dispatch } = useUser();
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  // const { isLoaded, userId, sessionId, getToken } = useAuth();
 
   // const [localUser, setLocalUser] = useLocalStorage('localUser', '');
   const handleSignout = () => {

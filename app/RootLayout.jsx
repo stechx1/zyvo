@@ -1,5 +1,5 @@
 'use client';
-import { Footer, NewNavbar } from '@/components';
+import { Footer, NewNavbar, Navbar } from '@/components';
 import './globals.css';
 import { Poppins, Roboto } from 'next/font/google';
 import { AOSInit } from '@/AOSInit';
@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
             <StyledComponentsRegistry>
               <UserProvider>
                 <ToasterProvider />
-                <NewNavbar />
+                <Navbar />
                 {children}
                 <Footer />
               </UserProvider>
