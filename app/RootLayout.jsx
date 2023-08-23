@@ -1,5 +1,5 @@
 'use client';
-import { Footer, Navbar } from '@/components';
+import { Footer, NewNavbar } from '@/components';
 import './globals.css';
 import { Poppins, Roboto } from 'next/font/google';
 import { AOSInit } from '@/AOSInit';
@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import Loading from '@/components/Loading';
 import { ToasterProvider } from '@/providers/toast-provider';
 import { UserProvider } from '@/store/context';
-
 
 import StyledComponentsRegistry from '@/lib/AntRegistry';
 
@@ -39,7 +38,7 @@ export default function RootLayout({ children }) {
     }, 2000);
   }, []);
 
-  const routesWithoutFooter = ["/sign-in", "sign-up"]
+  const routesWithoutFooter = ['/sign-in', 'sign-up'];
 
   return (
     <html lang='en'>
@@ -50,12 +49,11 @@ export default function RootLayout({ children }) {
         ) : (
           <>
             <StyledComponentsRegistry>
-            <UserProvider>
-
-            <ToasterProvider />
-              <Navbar />
-              {children}
-              <Footer />
+              <UserProvider>
+                <ToasterProvider />
+                <NewNavbar />
+                {children}
+                <Footer />
               </UserProvider>
             </StyledComponentsRegistry>
           </>
