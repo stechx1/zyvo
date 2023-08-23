@@ -42,7 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <>
       <AOSInit />
-      {/* <body className={`${roboto.className} ${poppins.className} `}> */}
+      <body className={`${roboto.className} ${poppins.className} `}>
         {loading ? (
           <Loading />
         ) : (
@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
             </StyledComponentsRegistry>
           </>
         )}
-      {/* </body> */}
+      </body>
     </>
   );
 }

@@ -8,14 +8,16 @@ export const metadata = {
   },
 };
 
+
+
 export default function Layout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang='en'>
+    <html lang='en'>
         <body>
+        <ClerkProvider>
           <RootLayout>{children}</RootLayout>
+    </ClerkProvider>
         </body>
       </html>
-    </ClerkProvider>
   );
 }
